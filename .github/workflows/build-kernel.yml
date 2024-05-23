@@ -31,7 +31,7 @@ jobs:
 
     - name: Build Kernel
       run: |
-        docker run --rm -v $(pwd):/build/ --user=1000 vf2-arch-build sh -c "CROSS_COMPILE='riscv64-linux-gnu-' makepkg -s --config /build/docker/makepkg.conf"
+        docker run --rm -v $(pwd):/build/ --user $(id -u):$(id -g) vf2-arch-build sh -c "CROSS_COMPILE='riscv64-linux-gnu-' makepkg -s --config /build/docker/makepkg.conf"
 
     - name: Release
       uses: softprops/action-gh-release@v2
